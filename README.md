@@ -45,8 +45,10 @@ data = {
     }
 }
 
-validated = Employee.validate(data, coerce=True)
+validated = Employee.validate(data)
 ```
+
+При передаче флага coerce=True все вложенные поля, переданные в модель, будут приведены к аннотированному типу по возможности.
 
 2. **Обработка ошибок**
 
