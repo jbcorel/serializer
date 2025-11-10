@@ -61,3 +61,23 @@ def test_invalid_annotation():
     assert err_2["message"] == "Тип контейнера float, ожидается list"
     assert err_2["value"] == 34.1
     assert err_2["expected_type"] == "list"
+
+
+def test_invalid_model_value():
+    invalid_payload = {
+        "bars": [123]
+    }
+
+    with pytest.raises(ValidationErrorGroup) as excinfo:
+        Foo.validate(invalid_payload)
+
+    errors = excinfo.value.errors
+
+    assert len(errors) == 1
+    err = errors[0]
+
+    assert err["path"] == "bars.[0]"
+    assert err["message"] == "Значение должно быть типа dict"
+    assert err["value"] == 123
+    assert err["expected_type"] == "Bar"
+    
