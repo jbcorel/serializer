@@ -13,7 +13,7 @@ class SchemaValidator(AbstractSchemaValidator):
         self.annotations = annotations
         self.default_values = default_values
         self.coerce_flag = coerce
-        self.ctx = ValidationContext._init_context(context)
+        self.ctx = ValidationContext.init_context(context)
             
     def _coerce_value_to_type(self, value, expected_type):
         try:
